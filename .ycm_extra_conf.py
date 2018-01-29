@@ -51,15 +51,15 @@ flags = [
 # a "-std=<something>".
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
-#'-std=c++11',
-'-std=c11',
+'-std=c++11',
+#'-std=c99',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-#'c++',
-'c',
+'c++',
+#'c',
 '-isystem',
 '../BoostParts',
 '-isystem',
@@ -72,33 +72,51 @@ flags = [
 '../llvm/tools/clang/include',
 '-isystem',
 '/usr/include',
-'isystem',
-'/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include',
-'isystem',
+'-isystem',
+'/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.0/include',
+'-isystem',
 '/usr/local/include',
-'isystem',
-'/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed',
-'isystem',
-'/usr/bin/../lib/clang/4.0.0/include',
-'isystem',
-'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1',
-'isystem',
-'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/x86_64-pc-linux-gnu',
-'isystem',
-'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.1.1/../../../../include/c++/7.1.1/backward',
+'-isystem',
+'/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.0/include-fixed',
+'-isystem',
+'/usr/bin/../lib/clang/5.0.1/include',
+'-isystem',
+'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.2.0/../../../../include/c++/7.2.1',
+'-isystem',
+'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.2.0/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu',
+'-isystem',
+'/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/7.2.0/../../../../include/c++/7.2.1/backward',
+'-isystem',
+'/usr/include/eigen3',
 
-'-I',
-'.',
-'-I',
-'./ClangCompleter',
 '-isystem',
-'./tests/gmock/gtest',
+'/usr/include/qt4/QtCore',
+
 '-isystem',
-'./tests/gmock/gtest/include',
+'/usr/include/qt4/QtGui',
+
 '-isystem',
-'./tests/gmock',
+'/usr/include/qt4',
+
 '-isystem',
-'./tests/gmock/include',
+'/usr/local/include/',
+
+'-isystem',
+'/opt/cuda/include',
+
+'-isystem',
+'/opt/cuda/extras/',
+
+'-isystem',
+'/usr/include/c++/7.2.1',
+
+'-I','.',
+'-I','./ClangCompleter',
+'-I','/usr/local/include/pcl-1.8/',
+'-isystem','./tests/gmock/gtest',
+'-isystem','./tests/gmock/gtest/include',
+'-isystem','./tests/gmock',
+'-isystem','./tests/gmock/include',
 ]
 
 
@@ -119,7 +137,7 @@ if os.path.exists( compilation_database_folder ):
 else:
   database = None
 
-SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm','.cu','cuda']
 
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )

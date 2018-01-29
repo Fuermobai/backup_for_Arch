@@ -9,6 +9,8 @@ call vundle#begin()
 
 Plugin 'Valloric/YouCompleteMe'
 
+let g:ycm_server_python_interpreter='/usr/bin/python'
+"let g:ycm_python_binary_path = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0
 let g:ycm_cache_omnifunc=0
@@ -17,7 +19,7 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_seed_identifiers_with_syntax=1	
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
-let g:ycm_key_invoke_completion = '<C-a>'
+let g:ycm_key_invoke_completion ='<C-a>'
 let g:ycm_autoclose_preview_window_after_completion=0
 let g:Ycm_autoclose_preview_window_after_insertion=1
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
@@ -28,7 +30,11 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'davidhalter/jedi-vim'
+let g:jedi#completions_command = "<C-A>"
+"Plugin ''
 Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
@@ -109,6 +115,9 @@ Plugin 'git://git.wincent.com/command-t.git'
 
 Plugin 'rstacruz/sparkup',{'rtp': 'vim/'}
 
+Plugin 'mattn/emmet-vim'
+
+Plugin 'scrooloose/nerdtree'
 call vundle#end()
 filetype plugin indent on
 
@@ -141,7 +150,11 @@ set autowrite
 set number
 set whichwrap=h,l,<,>,[,]
 set showmatch
-
 au BufRead,BufNewFile * setfiletype txt
-colorscheme cobalt  
 
+set foldmethod=marker
+autocmd BufWinLeave * silent mkview 
+autocmd BufWinEnter * silent loadview
+
+colorscheme cobalt  
+map <F2> :NERDTreeToggle<CR>
